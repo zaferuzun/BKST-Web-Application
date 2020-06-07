@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BKSTNewServiceDemoApp.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Proje1.ViewModel;
 using Proje1.WebApi;
@@ -48,6 +49,12 @@ namespace WebApplication2.Controllers
 
         }
 
+        public ActionResult Country()
+        {
+            CountyResult result = Service.GetCountry();
+            string st =result.Message;
+            return View();
+        }
         public ActionResult Notification()
         {
             //List<Dolar> dolarApi = null;
@@ -61,34 +68,10 @@ namespace WebApplication2.Controllers
             //Dolar.Temperatures di = new Dolar.Temperatures;
             //di = JToken.Parse(json).ToObject<Dolar>();
 
-            var json = @"{
-  'Email': 'james@example.com',
-  'Active': true,
-  'CreatedDate': '2013-01-20T00:00:00Z',
-  'Roles': [
-    'User',
-    'Admin'
-  ]
-}{
-  'Email': 'james@example.com',
-  'Active': true,
-  'CreatedDate': '2013-01-20T00:00:00Z',
-  'Roles': [
-    'User',
-    'Admin'
-  ]
-}{
-  'Email': 'james@example.com',
-  'Active': true,
-  'CreatedDate': '2013-01-20T00:00:00Z',
-  'Roles': [
-    'User',
-    'Admin'
-  ]
-}";
-            
-            List<Dolar> dolarApi = null;
-            dolarApi.Add(JsonConvert.DeserializeObject<Dolar>(json));
+            //Dolar result = Service.get();
+            //string st = result.exchange;
+            Service.GetCountry();
+
             //List<Dolar> dolarApi = new List<Dolar>();
             // dolarApi.Add(account);
             //dolarApi = JsonConvert.DeserializeObject<List<Dolar>>(j);
@@ -113,7 +96,7 @@ namespace WebApplication2.Controllers
             //    urunvm.Karekod_Bilgisi = item.Karekod_Bilgisi;
             //    urunvm.Palet_No = item.Palet_No;
             //}
-            return View(dolarApi.ToList());
+            return View();
         }
 
         public ActionResult Details(int? id)

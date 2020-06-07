@@ -61,9 +61,13 @@ namespace WebApplication2.ViewModel
         //public List<Dolar> DataSet { get; set; }
         //}
 
-        public string Email { get; set; }
-        public bool Active { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public IList<string> Roles { get; set; }
+        public string market { get; set; }
+        public string names { get; set; }
+        public string name { get; set; }
+        public string exchange { get; set; }
+        public string titles { get; set; }
+        public string title { get; set; }
+        public string key { get; set; }
+        public string group { get; set; }
     }
 }
