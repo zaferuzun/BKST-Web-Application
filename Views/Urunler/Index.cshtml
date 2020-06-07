@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebApplication2.ViewModel.UrunlerVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Seri_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parti_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GTIN_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Üretim_Tarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Son_Kullanma_Tarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Karekod_Bilgisi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Palet_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Koli_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.İş_Emri_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bildirim_Durumu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seri_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parti_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GTIN_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Üretim_Tarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Son_Kullanma_Tarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Karekod_Bilgisi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Palet_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Koli_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.İş_Emri_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bildirim_Durumu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

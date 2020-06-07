@@ -147,6 +147,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UrunlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +172,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DocumentDetail.cs" />
     <Compile Include="ViewModel\DocumentHeader.cs" />
+    <Compile Include="ViewModel\UrunlerVM.cs" />
     <Compile Include="WepApi\Operations.cs" />
     <Compile Include="WepApi\Service.cs" />
     <Compile Include="WepApi\ServiceAuthorization.cs" />
@@ -228,6 +230,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Urunler\Create.cshtml" />
+    <Content Include="Views\Urunler\Delete.cshtml" />
+    <Content Include="Views\Urunler\Details.cshtml" />
+    <Content Include="Views\Urunler\Edit.cshtml" />
+    <Content Include="Views\Urunler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
