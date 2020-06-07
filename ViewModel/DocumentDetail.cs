@@ -16,5 +16,6 @@ namespace Proje1.ViewModel
         public string productNote { get; set; }
         public DateTime? productionDate { get; set; }
         public DateTime? expirationDate { get; set; }
+        public string qrCode { get; set; }
     }
 }

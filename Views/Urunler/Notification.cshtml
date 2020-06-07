@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebApplication2.ViewModel.Dolar>
+@{
+    ViewBag.Title = "Notification";
+}
+
+<h2>Notification</h2>
+
+<ul class="list-group">
+
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">@item.Email <span class="badge">@item.Active</span></li>
+
+    }
+
+</ul>

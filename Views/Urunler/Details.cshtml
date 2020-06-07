@@ -5,95 +5,96 @@
 }
 
 <h2>Details</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
 
-<div>
-    <h4>ürünler</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Seri_No)
-        </dt>
+        <h4>ürünler</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Seri_No)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Seri_No)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Seri_No)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Parti_No)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Parti_No)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Parti_No)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Parti_No)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GTIN_No)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.GTIN_No)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.GTIN_No)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.GTIN_No)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Üretim_Tarihi)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Üretim_Tarihi)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Üretim_Tarihi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Üretim_Tarihi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Son_Kullanma_Tarihi)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Son_Kullanma_Tarihi)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Son_Kullanma_Tarihi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Son_Kullanma_Tarihi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Karekod_Bilgisi)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Karekod_Bilgisi)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Karekod_Bilgisi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Karekod_Bilgisi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Palet_No)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Palet_No)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Palet_No)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Palet_No)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Koli_No)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Koli_No)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Koli_No)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Koli_No)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.İş_Emri_No)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.İş_Emri_No)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.İş_Emri_No)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.İş_Emri_No)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bildirim_Durumu)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Bildirim_Durumu)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Bildirim_Durumu)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Bildirim_Durumu)
+            </dd>
 
-    </dl>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        </dl>
+
         <div class="form-group">
             <label>
                 @Html.DisplayNameFor(model => model.BildirimValue)
@@ -102,18 +103,102 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-car-alt"></i></span>
                 </div>
-                @Html.DropDownListFor(model => model.BildirimValue, new SelectList(Model.Bildirim, "Value", "Text"), new { @class = "form-control float-right", @type = "text" })
+                @Html.DropDownListFor(model => model.BildirimValue, new SelectList(Model.Bildirim, "Value", "Text"), new { @class = "form-control float-right", @type = "text", onchange = @"myFunction();", @id = "bildirimID" })
             </div>
             @Html.ValidationMessageFor(model => model.BildirimValue, "", new { @class = "bg-danger color-palett" })
 
         </div>
-        <div class="form-actions no-color">
-            <input type="submit" value="Details" class="btn btn-default" /> 
-        </div>
-    }
+        <div class="form-group" style="display:none" id="iadeDiv">
+            <label>
+                @Html.DisplayNameFor(model => model.IadeValue)
+            </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-car-alt"></i></span>
+                </div>
+                @Html.DropDownListFor(model => model.IadeValue, new SelectList(Model.Iade, "Value", "Text"), new { @class = "form-control float-right", @type = "text", @id = "iadeID" })
+            </div>
+            @Html.ValidationMessageFor(model => model.IadeValue, "", new { @class = "bg-danger color-palett" })
 
-</div>
+        </div>
+        <div class="form-group" style="display:none" id="deaktivasyonDiv">
+            <label>
+                @Html.DisplayNameFor(model => model.DeaktivasyonValue)
+            </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-car-alt"></i></span>
+                </div>
+                @Html.DropDownListFor(model => model.DeaktivasyonValue, new SelectList(Model.Deaktivasyon, "Value", "Text"), new { @class = "form-control float-right", @type = "text", @id = "deaktivasyonID" })
+            </div>
+            @Html.ValidationMessageFor(model => model.DeaktivasyonValue, "", new { @class = "bg-danger color-palett" })
+
+        </div>
+        <div class="form-group" style="display:none" , id="GlnDiv">
+            @Html.LabelFor(model => model.aliciGlnNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.aliciGlnNo, new { htmlAttributes = new { @class = "form-control", @id = "glnNo" } })
+                @Html.ValidationMessageFor(model => model.aliciGlnNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Details" class="btn btn-default" />
+        </div>
+
+    </div>
+}
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    <script>
+        function myFunction() {
+            var bildirim = document.getElementById("bildirimID");
+            var iade = document.getElementById("iadeID");
+            var deaktivasyon = document.getElementById("deaktivasyonID");
+            var iadeDiv = document.getElementById("iadeDiv");
+            var deaktivasyonDiv = document.getElementById("deaktivasyonDiv");
+            var glnDiv = document.getElementById("GlnDiv");
+            var glnNo = document.getElementById("glnNo");
+
+            if (bildirim.value == "IADE") {
+                iadeDiv.style.display = "block";
+                glnDiv.style.display = "none";
+                deaktivasyonDiv.style.display = "none";
+
+                deaktivasyon.value = "";
+                glnNo.value = "";
+
+            }
+            else if (bildirim.value == "SATIS") {
+                iadeDiv.style.display = "none";
+                glnDiv.style.display = "block";
+                deaktivasyonDiv.style.display = "none";
+
+                deaktivasyon.value = "";
+                iade.value = "";
+            }
+            else if (bildirim.value == "DEAKTIVASYON") {
+                iadeDiv.style.display = "none";
+                glnDiv.style.display = "none";
+                deaktivasyonDiv.style.display = "block";
+
+                iade.value = "";
+                glnNo.value = "";
+            }
+            else {
+                iadeDiv.style.display = "none";
+                glnDiv.style.display = "none";
+                deaktivasyonDiv.style.display = "none";
+
+                deaktivasyon.value = "";
+                iade.value = "";
+                glnNo.value = "";
+            }
+        }
+    </script>
+}

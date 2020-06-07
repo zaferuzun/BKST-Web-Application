@@ -1,9 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Proje1.ViewModel;
+using Proje1.WebApi;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication2.Models;
@@ -40,10 +48,75 @@ namespace WebApplication2.Controllers
 
         }
 
+        public ActionResult Notification()
+        {
+            //List<Dolar> dolarApi = null;
+            ////List<UrunlerVM> dolarApi = new List<UrunlerVM>();
 
-            // GET: Urunler/Details/5
+            //WebClient client = new WebClient();
+            //var json = client.DownloadString("https://web-paragaranti-pubsub.foreks.com/web-services/securities/exchanges/BIST/groups/E");
 
-            public ActionResult Details(int? id)
+            ////var result =  client.GetAsync("https://web-paragaranti-pubsub.foreks.com/web-services/securities/exchanges/BIST/groups/E");
+            ////string a = client.Content.ReadAsStringAsync().Result;
+            //Dolar.Temperatures di = new Dolar.Temperatures;
+            //di = JToken.Parse(json).ToObject<Dolar>();
+
+            var json = @"{
+  'Email': 'james@example.com',
+  'Active': true,
+  'CreatedDate': '2013-01-20T00:00:00Z',
+  'Roles': [
+    'User',
+    'Admin'
+  ]
+}{
+  'Email': 'james@example.com',
+  'Active': true,
+  'CreatedDate': '2013-01-20T00:00:00Z',
+  'Roles': [
+    'User',
+    'Admin'
+  ]
+}{
+  'Email': 'james@example.com',
+  'Active': true,
+  'CreatedDate': '2013-01-20T00:00:00Z',
+  'Roles': [
+    'User',
+    'Admin'
+  ]
+}";
+            
+            List<Dolar> dolarApi = null;
+            dolarApi.Add(JsonConvert.DeserializeObject<Dolar>(json));
+            //List<Dolar> dolarApi = new List<Dolar>();
+            // dolarApi.Add(account);
+            //dolarApi = JsonConvert.DeserializeObject<List<Dolar>>(j);
+            //DataContractJsonSerializer jsonSerializer  = new DataContractJsonSerializer(typeof(Dolar));
+            //MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonData));
+            //stream.Position = 0;
+            //Dolar dataContractDetail = (Dolar)jsonSerializer.ReadObject(stream);
+            //Console.WriteLine(string.Concat("Hi ", dataContractDetail.Email, " " + dataContractDetail.Active));
+            //Console.ReadLine();
+
+            //if (dolarApi == null)
+            //    return null;
+            //foreach(var item in json)
+            //{
+            //    Dolar urunvm = new Dolar();
+            //    urunvm.close = item.close;
+            //    urunvm.date = item.date;
+            //    urunvm.Parti_No = item.Parti_No;
+            //    urunvm.GTIN_No = item.GTIN_No;
+            //    urunvm.Üretim_Tarihi = item.Üretim_Tarihi;
+            //    urunvm.Son_Kullanma_Tarihi = item.Son_Kullanma_Tarihi;
+            //    urunvm.Karekod_Bilgisi = item.Karekod_Bilgisi;
+            //    urunvm.Palet_No = item.Palet_No;
+            //}
+            return View(dolarApi.ToList());
+        }
+
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -63,6 +136,8 @@ namespace WebApplication2.Controllers
             urunVM.İş_Emri_No = urunDB.İş_Emri_No;
             urunVM.Bildirim_Durumu = urunDB.Bildirim_Durumu;
             urunVM.Bildirim = urunVM.BildirimList();
+            urunVM.Iade = urunVM.IadeList();
+            urunVM.Deaktivasyon = urunVM.DeaktivasyonList();
 
             if (urunDB == null)
             {
@@ -77,9 +152,90 @@ namespace WebApplication2.Controllers
 
             string value = urunVM.BildirimValue;
             int id = urunVM.Id;
+            string vvv = urunVM.Seri_No;
+            ürünler urunDB = db.ürünler.Find(id);
+            UrunlerVM urunVM2 = new UrunlerVM();
+            urunVM2.Id = urunDB.Id;
+            urunVM2.Seri_No = urunDB.Seri_No;
+            urunVM2.Parti_No = urunDB.Parti_No;
+            urunVM2.GTIN_No = urunDB.GTIN_No;
+            urunVM2.Üretim_Tarihi = urunDB.Üretim_Tarihi;
+            urunVM2.Son_Kullanma_Tarihi = urunDB.Son_Kullanma_Tarihi;
+            urunVM2.Karekod_Bilgisi = urunDB.Karekod_Bilgisi;
+            urunVM2.Palet_No = urunDB.Palet_No;
+            urunVM2.Koli_No = urunDB.Koli_No;
+            urunVM2.İş_Emri_No = urunDB.İş_Emri_No;
+            DocumentHeader head = new DocumentHeader();
+            head.sender = "00000000080";
+            //satış için degişti
+            head.receiver = "";
+            head.key = "9F727065-0758-4152-8B93-06AFA694C7A5";
+            //degişti
+            head.actionType = "M";
+            //döküman numarası ürün idsine göre gönderiliyor.
+            head.documentNumber = "1111";
+            //head.documentDate = "2018-08-18";
+            head.documentDate = DateTime.Now.ToString("yyyy/MM/dd");
+            //seçilen bildirime göre degişti
+            head.note = "Üretim Bildirimi";
+            //deaktivasyon note degiştirildi
+            head.deactivationNote = "";
+            head.exportReceiverNote = "";
+            head.exportCountry = null;
+            head.importSenderNote = "";
+            head.importCountry = null;
+            //iade kodu degiştirildi
+            head.returnNote = "";
+            head.destructionNote = "";
+            head.idTaxNo = "";
 
+            if(value.Equals("DEAKTIVASYON"))
+            {
+                //action deaktivasyon D
+                head.actionType = "D";
+                head.note = "DEAKTIVASYON Bildirimi";
+                head.deactivationNote = urunVM.DeaktivasyonValue;
+            }
+            else if(value.Equals("SATIS"))
+            {
+                //action Satış S
+                head.actionType = "S";
+                head.receiver = urunVM.aliciGlnNo;
+                head.note = "SATIS Bildirimi";
+            }
+            else if (value.Equals("SATISIPTAL"))
+            {
+                //action Satış iptal C
+                head.actionType = "C";
+                head.note = "SATISIPTAL Bildirimi";
+            }
+            else if (value.Equals("IADE"))
+            {
+                //action İade R
+                head.actionType = "R";
+                head.note = "IADE Bildirimi";
+                head.returnNote = urunVM.IadeValue;
+            }
+
+            string Headaer = Operations.GetJson(head);
+
+            List<DocumentDetail> Deat = new List<DocumentDetail>();
+            DocumentDetail detail1 = new DocumentDetail();
+            detail1.serialNumber = urunVM2.Seri_No;
+            detail1.lotNumber = urunVM2.Parti_No;
+            detail1.gtinNumber = urunVM2.GTIN_No;
+            detail1.parentCarrierNo = urunVM2.Palet_No;
+            detail1.carrierNo = urunVM2.Koli_No;
+            detail1.productNote = "ürün açıklaması";
+            detail1.productionDate = Convert.ToDateTime(urunVM2.Üretim_Tarihi);
+            detail1.expirationDate = Convert.ToDateTime(urunVM2.Son_Kullanma_Tarihi);
+            detail1.qrCode = urunVM2.Karekod_Bilgisi;
+            Deat.Add(detail1);
+            string Detail = Operations.GetJson(Deat);
+            JsonResult result = Service.sendNotificationAndDetail("00000000080", "9F727065-0758-4152-8B93-06AFA694C7A5 ", Headaer, Detail);
             return RedirectToAction("Index");
         }
+
         // GET: Urunler/Create
         public ActionResult Create()
         {
