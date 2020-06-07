@@ -40,8 +40,10 @@ namespace WebApplication2.Controllers
 
         }
 
-        // GET: Urunler/Details/5
-        public ActionResult Details(int? id)
+
+            // GET: Urunler/Details/5
+
+            public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -60,13 +62,24 @@ namespace WebApplication2.Controllers
             urunVM.Koli_No = urunDB.Koli_No;
             urunVM.İş_Emri_No = urunDB.İş_Emri_No;
             urunVM.Bildirim_Durumu = urunDB.Bildirim_Durumu;
+            urunVM.Bildirim = urunVM.BildirimList();
+
             if (urunDB == null)
             {
                 return HttpNotFound();
             }
             return View(urunVM);
         }
+        [HttpPost, ActionName("Details")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DetailsConfirmed(UrunlerVM urunVM)
+        {
 
+            string value = urunVM.BildirimValue;
+            int id = urunVM.Id;
+
+            return RedirectToAction("Index");
+        }
         // GET: Urunler/Create
         public ActionResult Create()
         {
@@ -93,7 +106,7 @@ namespace WebApplication2.Controllers
                 üründb.Palet_No = urunvm.Palet_No;
                 üründb.Koli_No = urunvm.Koli_No;
                 üründb.İş_Emri_No = urunvm.İş_Emri_No;
-                üründb.Bildirim_Durumu = urunvm.Bildirim_Durumu;
+                üründb.Bildirim_Durumu = null;
                 db.ürünler.Add(üründb);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -121,7 +134,7 @@ namespace WebApplication2.Controllers
             urunVM.Palet_No = urunDB.Palet_No;
             urunVM.Koli_No = urunDB.Koli_No;
             urunVM.İş_Emri_No = urunDB.İş_Emri_No;
-            urunVM.Bildirim_Durumu = urunDB.Bildirim_Durumu;
+
             if (urunDB == null)
             {
                 return HttpNotFound();
@@ -149,7 +162,7 @@ namespace WebApplication2.Controllers
                 ürünDB.Palet_No = urunVM.Palet_No;
                 ürünDB.Koli_No = urunVM.Koli_No;
                 ürünDB.İş_Emri_No = urunVM.İş_Emri_No;
-                ürünDB.Bildirim_Durumu = urunVM.Bildirim_Durumu;
+
                 db.Entry(ürünDB).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -184,6 +197,8 @@ namespace WebApplication2.Controllers
             }
             return View(urunVM);
         }
+
+
 
         // POST: Urunler/Delete/5
         [HttpPost, ActionName("Delete")]

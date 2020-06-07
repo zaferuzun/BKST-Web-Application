@@ -8,6 +8,12 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Bildirim Geçmişi", "Create")
+    </span>
+</p>
+<p>
+
 </p>
 <table class="table">
     <tr>
@@ -44,44 +50,47 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Seri_No)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parti_No)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GTIN_No)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Üretim_Tarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Son_Kullanma_Tarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Karekod_Bilgisi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Palet_No)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Koli_No)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.İş_Emri_No)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bildirim_Durumu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seri_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parti_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GTIN_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Üretim_Tarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Son_Kullanma_Tarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Karekod_Bilgisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Palet_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Koli_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.İş_Emri_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bildirim_Durumu)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Bildirim Yap", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+@TempData["ileti"]
+

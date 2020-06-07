@@ -91,6 +91,27 @@
         </dd>
 
     </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label>
+                @Html.DisplayNameFor(model => model.BildirimValue)
+            </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-car-alt"></i></span>
+                </div>
+                @Html.DropDownListFor(model => model.BildirimValue, new SelectList(Model.Bildirim, "Value", "Text"), new { @class = "form-control float-right", @type = "text" })
+            </div>
+            @Html.ValidationMessageFor(model => model.BildirimValue, "", new { @class = "bg-danger color-palett" })
+
+        </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Details" class="btn btn-default" /> 
+        </div>
+    }
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
