@@ -25,6 +25,6 @@ namespace WebApplication2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tablo1> tablo1 { get; set; }
+        public virtual DbSet<ürünler> ürünler { get; set; }
     }
 }
