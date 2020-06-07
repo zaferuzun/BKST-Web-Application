@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Proje1.ViewModel
+namespace WebApplication2.DataModel
 {
     public class DocumentHeader
     {
@@ -23,5 +23,4 @@ namespace Proje1.ViewModel
         public string destructionNote { get; set; }
         public string idTaxNo { get; set; }
     }
-
 }

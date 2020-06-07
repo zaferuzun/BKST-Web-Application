@@ -1,8 +1,5 @@
-﻿using BKSTNewServiceDemoApp.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Proje1.ViewModel;
-using Proje1.WebApi;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,8 +12,10 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.DataModel;
 using WebApplication2.Models;
 using WebApplication2.ViewModel;
+using WebApplication2.WebApi;
 
 namespace WebApplication2.Controllers
 {
@@ -52,8 +51,8 @@ namespace WebApplication2.Controllers
         public ActionResult Country()
         {
             CountyResult result = Service.GetCountry();
-            string st =result.Message;
-            return View();
+            
+            return View(result.Data);
         }
         public ActionResult Notification()
         {
@@ -215,7 +214,7 @@ namespace WebApplication2.Controllers
             detail1.qrCode = urunVM2.Karekod_Bilgisi;
             Deat.Add(detail1);
             string Detail = Operations.GetJson(Deat);
-            JsonResult result = Service.sendNotificationAndDetail("00000000080", "9F727065-0758-4152-8B93-06AFA694C7A5 ", Headaer, Detail);
+            JsonTypeResult result = Service.sendNotificationAndDetail("00000000080", "9F727065-0758-4152-8B93-06AFA694C7A5 ", Headaer, Detail);
             return RedirectToAction("Index");
         }
 

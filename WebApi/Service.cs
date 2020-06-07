@@ -1,15 +1,13 @@
-﻿using BKSTNewServiceDemoApp.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
-using System.Web.Mvc;
-using WebApplication2.ViewModel;
+using WebApplication2.DataModel;
 
-namespace Proje1.WebApi
+namespace WebApplication2.WebApi
 {
     public class Service
     {
@@ -17,7 +15,7 @@ namespace Proje1.WebApi
         /// Üretim/satış/alış vb. Bildirimlerin yapılması
         /// </summary>
         /// <returns></returns>
-        public static JsonResult sendNotificationAndDetail(string Gln, string Key, string HeaderText, string DetailText)
+        public static JsonTypeResult sendNotificationAndDetail(string Gln, string Key, string HeaderText, string DetailText)
         {
             using (WebClient wc = new WebClient())
             {
@@ -43,7 +41,7 @@ namespace Proje1.WebApi
                 resByte = wc.UploadData(ServiceAuthorization.URL + @"api/main/setTransactionAndDetail", "PUT", reqString);
                 resString = Encoding.UTF8.GetString(resByte);
 
-                return JsonConvert.DeserializeObject<JsonResult>(resString);
+                return JsonConvert.DeserializeObject<JsonTypeResult>(resString);
             }
 
         }
@@ -65,18 +63,7 @@ namespace Proje1.WebApi
             }
 
         }
-        public static Dolar get()
-        {
-            using (WebClient wc = new WebClient())
-            {
-                var json = "";
-
-                json = wc.DownloadString("https://web-paragaranti-pubsub.foreks.com/web-services/securities/exchanges/BIST/groups/E");
-
-                return JsonConvert.DeserializeObject<Dolar>(json);
-            }
-        }
-                /// <summary>
+        /// <summary>
         /// BKST üzerindeki kayıtlı tüm ülkeleri getirir.
         /// </summary>
         /// <returns></returns>

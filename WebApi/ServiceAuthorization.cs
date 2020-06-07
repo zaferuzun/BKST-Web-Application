@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 
-namespace Proje1.WebApi
+namespace WebApplication2.WebApi
 {
     public static class ServiceAuthorization
     {

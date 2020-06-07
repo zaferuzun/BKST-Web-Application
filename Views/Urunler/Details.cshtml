@@ -165,40 +165,74 @@
             var glnDiv = document.getElementById("GlnDiv");
             var glnNo = document.getElementById("glnNo");
 
-            if (bildirim.value == "IADE") {
-                iadeDiv.style.display = "block";
-                glnDiv.style.display = "none";
-                deaktivasyonDiv.style.display = "none";
+            switch (bildirim.value) {
+                case "IADE":
+                    iadeDiv.style.display = "block";
+                    glnDiv.style.display = "none";
+                    deaktivasyonDiv.style.display = "none";
 
-                deaktivasyon.value = "";
-                glnNo.value = "";
+                    deaktivasyon.value = "";
+                    glnNo.value = "";
+                    break;
+                case "SATIS":
+                    iadeDiv.style.display = "none";
+                    glnDiv.style.display = "block";
+                    deaktivasyonDiv.style.display = "none";
 
+                    deaktivasyon.value = "";
+                    iade.value = "";
+                    break;
+                case "DEAKTIVASYON":
+                    iadeDiv.style.display = "none";
+                    glnDiv.style.display = "none";
+                    deaktivasyonDiv.style.display = "block";
+
+                    iade.value = "";
+                    glnNo.value = "";
+                    break;
+                default:
+                    iadeDiv.style.display = "none";
+                    glnDiv.style.display = "none";
+                    deaktivasyonDiv.style.display = "none";
+
+                    deaktivasyon.value = "";
+                    iade.value = "";
+                    glnNo.value = "";
             }
-            else if (bildirim.value == "SATIS") {
-                iadeDiv.style.display = "none";
-                glnDiv.style.display = "block";
-                deaktivasyonDiv.style.display = "none";
+            //if (bildirim.value == "IADE") {
+            //    iadeDiv.style.display = "block";
+            //    glnDiv.style.display = "none";
+            //    deaktivasyonDiv.style.display = "none";
 
-                deaktivasyon.value = "";
-                iade.value = "";
-            }
-            else if (bildirim.value == "DEAKTIVASYON") {
-                iadeDiv.style.display = "none";
-                glnDiv.style.display = "none";
-                deaktivasyonDiv.style.display = "block";
+            //    deaktivasyon.value = "";
+            //    glnNo.value = "";
 
-                iade.value = "";
-                glnNo.value = "";
-            }
-            else {
-                iadeDiv.style.display = "none";
-                glnDiv.style.display = "none";
-                deaktivasyonDiv.style.display = "none";
+            //}
+            //else if (bildirim.value == "SATIS") {
+            //    iadeDiv.style.display = "none";
+            //    glnDiv.style.display = "block";
+            //    deaktivasyonDiv.style.display = "none";
 
-                deaktivasyon.value = "";
-                iade.value = "";
-                glnNo.value = "";
-            }
+            //    deaktivasyon.value = "";
+            //    iade.value = "";
+            //}
+            //else if (bildirim.value == "DEAKTIVASYON") {
+            //    iadeDiv.style.display = "none";
+            //    glnDiv.style.display = "none";
+            //    deaktivasyonDiv.style.display = "block";
+
+            //    iade.value = "";
+            //    glnNo.value = "";
+            //}
+            //else {
+            //    iadeDiv.style.display = "none";
+            //    glnDiv.style.display = "none";
+            //    deaktivasyonDiv.style.display = "none";
+
+            //    deaktivasyon.value = "";
+            //    iade.value = "";
+            //    glnNo.value = "";
+            //}
         }
     </script>
 }

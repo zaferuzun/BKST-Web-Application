@@ -1,7 +1,31 @@
-﻿
+﻿@model IEnumerable<WebApplication2.DataModel.CountryData>
+
 @{
     ViewBag.Title = "Country";
 }
 
 <h2>Country</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_COUNTRY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COUNTRY_NAME)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_COUNTRY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.COUNTRY_NAME)
+            </td>
+            <td>
+                </tr>
+    }
+    </table>
 
