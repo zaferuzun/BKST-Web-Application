@@ -27,13 +27,13 @@ namespace WebApplication2.ViewModel
         [Required(ErrorMessage = "Üretim Tarihi alanı boş geçilemez!")]
         [Display(Name = "Üretim Tarihi")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public string Üretim_Tarihi { get; set; }
 
         [Required(ErrorMessage = "Son Kullanma Tarihi alanı boş geçilemez!")]
         [Display(Name = "Son Kullanma Tarihi")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public string Son_Kullanma_Tarihi { get; set; }
 
         [Required(ErrorMessage = "Karekod No alanı boş geçilemez!")]

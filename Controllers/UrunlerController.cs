@@ -51,51 +51,43 @@ namespace WebApplication2.Controllers
         public ActionResult Country()
         {
             CountyResult result = Service.GetCountry();
-            
+
             return View(result.Data);
         }
+
         public ActionResult Notification()
         {
-            //List<Dolar> dolarApi = null;
-            ////List<UrunlerVM> dolarApi = new List<UrunlerVM>();
+            
+            List<NotificationHistory> notification = new List<NotificationHistory>();
 
-            //WebClient client = new WebClient();
-            //var json = client.DownloadString("https://web-paragaranti-pubsub.foreks.com/web-services/securities/exchanges/BIST/groups/E");
+            return View(notification.ToList());
+        }
 
-            ////var result =  client.GetAsync("https://web-paragaranti-pubsub.foreks.com/web-services/securities/exchanges/BIST/groups/E");
-            ////string a = client.Content.ReadAsStringAsync().Result;
-            //Dolar.Temperatures di = new Dolar.Temperatures;
-            //di = JToken.Parse(json).ToObject<Dolar>();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Notification(string str)
+        {
+            string date1 = Request.Form["tarih1"];
+            string date2 = Request.Form["tarih2"];
+            DateTime StartDate = Convert.ToDateTime(date1);
+            DateTime EndDate = Convert.ToDateTime(date2);
+            string DocumentNumber = "";
+            string NotificationType = "";
+            JsonTypeResult result = Service.getTransactionList("00000000080", "9F727065-0758-4152-8B93-06AFA694C7A5",DocumentNumber,StartDate,EndDate,NotificationType);
+            if (result.Result)
+            {
+                TempData["ileti"] = "Başarılı";
+                return View(result.Data);
 
-            //Dolar result = Service.get();
-            //string st = result.exchange;
-            Service.GetCountry();
+            }
+            else
+            {
+                TempData["ileti"] = "Başarısız";
 
-            //List<Dolar> dolarApi = new List<Dolar>();
-            // dolarApi.Add(account);
-            //dolarApi = JsonConvert.DeserializeObject<List<Dolar>>(j);
-            //DataContractJsonSerializer jsonSerializer  = new DataContractJsonSerializer(typeof(Dolar));
-            //MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonData));
-            //stream.Position = 0;
-            //Dolar dataContractDetail = (Dolar)jsonSerializer.ReadObject(stream);
-            //Console.WriteLine(string.Concat("Hi ", dataContractDetail.Email, " " + dataContractDetail.Active));
-            //Console.ReadLine();
+                List<NotificationHistory> notification = new List<NotificationHistory>();
+                return View(notification.ToList());
+            }
 
-            //if (dolarApi == null)
-            //    return null;
-            //foreach(var item in json)
-            //{
-            //    Dolar urunvm = new Dolar();
-            //    urunvm.close = item.close;
-            //    urunvm.date = item.date;
-            //    urunvm.Parti_No = item.Parti_No;
-            //    urunvm.GTIN_No = item.GTIN_No;
-            //    urunvm.Üretim_Tarihi = item.Üretim_Tarihi;
-            //    urunvm.Son_Kullanma_Tarihi = item.Son_Kullanma_Tarihi;
-            //    urunvm.Karekod_Bilgisi = item.Karekod_Bilgisi;
-            //    urunvm.Palet_No = item.Palet_No;
-            //}
-            return View();
         }
 
         public ActionResult Details(int? id)

@@ -15,7 +15,7 @@ namespace WebApplication2.DataModel
             public string WAYBILLDATE { get; set; }
             public string HEADERSTATE { get; set; }
             public string OPERATION { get; set; }
-            public string DETAILCOUNT { get; set; }
+            public int DETAILCOUNT { get; set; }
 
     }
 }

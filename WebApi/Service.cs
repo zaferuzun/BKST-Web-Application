@@ -46,7 +46,7 @@ namespace WebApplication2.WebApi
 
         }
         /// <summary>
-        /// Belirli tarih aralığında yapılan bildiriölerin listesi
+        /// Belirli tarih aralığında yapılan bildirimlerin listesi
         /// </summary>
         /// <returns></returns>
         public static JsonTypeResult getTransactionList(string Gln, string Key, string DocumentNumber, DateTime StartDate, DateTime EndDate, string NotificationType)
@@ -57,7 +57,7 @@ namespace WebApplication2.WebApi
                 wc.Encoding = System.Text.Encoding.UTF8;
                 var json = "";
 
-                json = wc.DownloadString(ServiceAuthorization.URL + @"api/main/getTransactionList?Key=" + Key + "&Gln=" + Gln + "&DocumentNumber=" + DocumentNumber + "&StartDate=" + StartDate + "&EndDate=" + EndDate + "&NotificationType=" + NotificationType);
+                json = wc.DownloadString(ServiceAuthorization.URL + @"api/main/getTransactionList?Key=" + Key + "&Gln=" + Gln + "&DocumentNumber=" + DocumentNumber + "&StartDate=" + StartDate.ToString("MM/dd/yyyy") + "&EndDate=" + EndDate.ToString("MM/dd/yyyy") + "&NotificationType=" + NotificationType);
 
                 return JsonConvert.DeserializeObject<JsonTypeResult>(json);
             }

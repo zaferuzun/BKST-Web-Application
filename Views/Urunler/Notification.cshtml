@@ -1,16 +1,127 @@
-﻿@model IEnumerable<WebApplication2.ViewModel.Dolar>
+﻿@model IEnumerable<WebApplication2.DataModel.NotificationHistory>
 @{
     ViewBag.Title = "Notification";
 }
 
-<h2>Notification</h2>
+    <h2>Notification</h2>
+@TempData["ileti"]
+<p>
+    @Html.ActionLink("Ürün Ekle", "Create")
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Bildirim Geçmişi", "Notification")
+    </span>
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Ülkeler", "Country")
+    </span>
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Anasayfa", "Index")
+    </span>
+</p>
+@using (Html.BeginForm("Notification/str", "Urunler", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-<ul class="list-group">
+    <div class="form-group">
+        <div class="col-md-10">
+            <label>Başlangıç Tarihi</label>
+            <input type="date" id="tarih1" name="tarih1" required="required" onchange="myFunction()" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label>Bitiş Tarihi</label>
+            <input type="date" id="tarih2" name="tarih2" required="required" onchange="myFunction()" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Getir" class="btn btn-default" id="button" />
+            <label id="hataMesaj" style="display:none; color:red;" >Başlangıç tarihi bitiş tarihinden sonra olamaz</label>
 
+        </div>
+    </div>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HEADERID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SENDER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RECEIVER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WAYBILLNUMBER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WAYBILLDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HEADERSTATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OPERATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DETAILCOUNT)
+        </th>
+    </tr>
     @foreach (var item in Model)
     {
-        <li class="list-group-item">@item.Email <span class="badge">@item.Active</span></li>
-
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HEADERID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SENDER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RECEIVER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WAYBILLNUMBER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WAYBILLDATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HEADERSTATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPERATION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DETAILCOUNT)
+            </td>
+            <td>
+        </tr>
     }
+</table>
+@section Scripts {
+    <script>
+        function myFunction() {
+            var date1 = document.getElementById("tarih1").value;
+            var date2 = document.getElementById("tarih2").value;
+            var btn = document.getElementById("button");
+            var label = document.getElementById("hataMesaj");
 
-</ul>
+
+            //date1 < date2 ? btn.disabled = false : btn.disabled = true;
+            if (date1 < date2) {
+                btn.disabled = false;
+                label.style.display = "none";
+
+            }
+            else {
+                btn.disabled = true;
+                label.style.display = "block";
+
+            }
+        }
+    </script>
+}

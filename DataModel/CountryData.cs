@@ -10,5 +10,7 @@ namespace WebApplication2.DataModel
         public Guid ID_COUNTRY { get; set; }
 
         public string COUNTRY_NAME { get; set; }
+
     }
+
 }
