@@ -12,16 +12,21 @@ namespace WebApplication2.ViewModel
 
         public int Id { get; set; }
 
+        //
         [Required(ErrorMessage = "Seri No alanı boş geçilemez!")]
         [Display(Name = "Seri No")]
+        [StringLength(20, MinimumLength = 1 , ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string Seri_No { get; set; }
-
+        //
         [Required(ErrorMessage = "Parti No alanı boş geçilemez!")]
         [Display(Name = "Parti No")]
+        [StringLength(20, MinimumLength = 1, ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string Parti_No { get; set; }
 
+        //
         [Required(ErrorMessage = "GTIN No alanı boş geçilemez!")]
         [Display(Name = "GTIN No")]
+        [StringLength(14, MinimumLength = 1, ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string GTIN_No { get; set; }
 
         [Required(ErrorMessage = "Üretim Tarihi alanı boş geçilemez!")]
@@ -38,20 +43,25 @@ namespace WebApplication2.ViewModel
 
         [Required(ErrorMessage = "Karekod No alanı boş geçilemez!")]
         [Display(Name = "Karekod")]
+        [StringLength(250, MinimumLength = 1, ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string Karekod_Bilgisi { get; set; }
-
+        //
         [Required(ErrorMessage = "Palet No alanı boş geçilemez!")]
         [Display(Name = "Palet No")]
+        [StringLength(20, MinimumLength = 1, ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string Palet_No { get; set; }
-
+        //
         [Required(ErrorMessage = "Koli No alanı boş geçilemez!")]
         [Display(Name = "Koli No")]
+        [StringLength(20, MinimumLength = 1, ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string Koli_No { get; set; }
 
         [Required(ErrorMessage = "İş Emri No alanı boş geçilemez!")]
         [Display(Name = "İş Emri No")]
+        [StringLength(30, MinimumLength = 1, ErrorMessage = "{2} ile {1} arasında değer giriniz.")]
         public string İş_Emri_No { get; set; }
 
+        [Display(Name = "Bildirim Durumu")]
         public string Bildirim_Durumu { get; set; }
 
         public string BildirimValue { get; set; }

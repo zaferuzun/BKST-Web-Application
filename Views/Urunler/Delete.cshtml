@@ -2,10 +2,25 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+
 }
 
 <h2>Delete</h2>
+<p>
+    @Html.ActionLink("Anasayfa", "Index")
+    <span style="margin-left:5%;">
 
+        @Html.ActionLink("Ürün Ekle", "Create")
+    </span>
+
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Bildirim Geçmişi", "Notification")
+    </span>
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Ülkeler", "Country")
+    </span>
+</p>
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>ürünler</h4>

@@ -217,8 +217,6 @@ namespace WebApplication2.Controllers
         }
 
         // POST: Urunler/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UrunlerVM urunvm)
@@ -273,8 +271,6 @@ namespace WebApplication2.Controllers
         }
 
         // POST: Urunler/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UrunlerVM  urunVM)

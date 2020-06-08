@@ -2,10 +2,25 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+
 }
 
 <h2>Edit</h2>
+<p>
+    @Html.ActionLink("Anasayfa", "Index")
+    <span style="margin-left:5%;">
 
+        @Html.ActionLink("Ürün Ekle", "Create")
+    </span>
+
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Bildirim Geçmişi", "Notification")
+    </span>
+    <span style="margin-left:5%;">
+        @Html.ActionLink("Ülkeler", "Country")
+    </span>
+</p>
 
 @using (Html.BeginForm())
 {
@@ -102,6 +117,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
